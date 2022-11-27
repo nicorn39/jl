@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+
+<body>
+    <div id="app">
+        <!-- App.vue -->
+
+<v-app>
+    <!--サイドメニュー-->
+    <div>
+      <v-navigation-drawer app v-model="drawer" clipped>
+        <v-card
+          class="mx-auto"
+          max-width="400"
+          color="dark"
+        >
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title><strong>Julia入門編</strong></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+      
+          <v-list-item two-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>バージョン</strong></v-list-item-title>
+              <v-list-item-subtitle>Julia 1.8がリリース！</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>基本的なコード</strong></v-list-item-title>
+              <v-list-item-subtitle>
+                Juliaのコードを書いてみよう！
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>データサイエンス</strong></v-list-item-title>
+              <v-list-item-subtitle>
+                Juliaはほぼすべてのデータベースを操作できます。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>機械学習</strong></v-list-item-title>
+              <v-list-item-subtitle>
+                機械学習アルゴリズムをご紹介します。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>数値計算と科学計算</strong></v-list-item-title>
+              <v-list-item-subtitle>
+                量子コンピューティングなどのシミュレーションをやってみよう！
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>JuliaCon 2022</strong></v-list-item-title>
+              <v-list-item-subtitle>
+                JuliaConが正式に書籍化されました！
+                受賞者の中には日本人もいます。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>グッズ</strong></v-list-item-title>
+              <v-list-item-subtitle>
+                JuliaConのTシャツやマグカップはこちら。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>CDNでVuetify</strong></v-list-item-title>
+              <v-list-item-subtitle>
+                とりあえず動くけどまだまだこれから！
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title><strong>CLIでやってみよう！</strong></v-list-item-title>
+              <v-list-item-subtitle>
+                vueファイルでも書いてみよう。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+        </v-card>
+    </v-navigation-drawer>
+
+<!--ヘッダー-->   
+<v-app-bar
+color="red lighten-3"
+dark
+app clipped-left
+dence
+>
+<v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+
+<v-toolbar-title class="neon">Julia検定</v-toolbar-title>
+
+<!--これを消すとスマホ対応ができなくなる-->
+<div class="flex-grow-1"></div>
+
+<v-btn icon>
+  <v-icon>mdi-star</v-icon>
+</v-btn>
+
+<v-btn icon>
+  <v-icon>mdi-magnify</v-icon>
+</v-btn>
+
+<v-menu
+  left
+  bottom
+>
+  <template v-slot:activator="{ on, attrs }">
+    <v-btn
+     icon
+     v-bind="attrs"
+     v-on="on"
+     >
+      <v-icon>mdi-dots-vertical</v-icon>
+    </v-btn>
+  </template>  
+
+  <!--これを消すとスマホ対応ができなくなる-->
+  <v-list>
+    <v-list-item
+      v-for="n in 5"
+      :key="n"
+      @click="() => {}"
+    >
+      <v-list-item-title>Option {{ n }}</v-list-item-title>
+    </v-list-item>
+  </v-list>
+
+</v-menu>
+</v-app-bar>
+</div>
+
+    <!--メインページ-->
+    <v-main class="colorchangeanime2_bg">  
+    <!-- アプリケーションに適切なgutterを提供 -->
+      <v-container fluid>
+   
+<!--カード-->
+<v-row>
+  <v-col
+    cols="6"
+    sm="3"
+  >
+    <v-hover
+      v-slot="{ hover }"
+      open-delay="200"
+    >
+    <v-container fill-height>
+      <v-card class="jump1"
+        :elevation="hover ? 16 : 2"
+        :class="{ 'on-hover': hover }"
+        class="mx-auto"
+      >
+        <v-card-text class="font-weight-medium mt-2 text-center text-subtitle-5">
+          Julia検定1級
+          <v-img
+          max-height="200"
+          max-width="300"
+          src="https://julialang.org/assets/infra/waves.gif"
+          ></v-img>          
+          <br>画像：https://julialang.org/
+        </v-card-text>
+        </v-card>
+      </v-container>
+    </v-hover>
+
+  <!--カード1の下のモーダルボタン-->
+  <div class="text-center">
+    <v-dialog
+      v-model="dialog1"
+      width="500"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="red lighten-3"
+          v-bind="attrs"
+          v-on="on"
+          class="white--text"
+        >
+          <strong>挑戦する</strong>
+        </v-btn>
+      </template>
+
+      <v-card>
+        <v-card-title class="text-h5 green lighten-2">
+          Julia検定1級にチャレンジ！
+        </v-card-title>
+
+        <v-card-text>
+          Learn about how to do computational modeling in the Julia programming language with applications focused on the COVID-19 Pandemic.<br>by juliaacademy.com
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            I got it!
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+</v-col>
+
+
+  <v-col
+    cols="6"
+    sm="3"
+  >
+    <v-hover
+      v-slot="{ hover }"
+      close-delay="200"
+    >
+    <v-container fill-height>
+      <v-card class="jump2"
+        :elevation="hover ? 16 : 2"
+        :class="{ 'on-hover': hover }"
+        class="mx-auto"
+      >
+        <v-card-text class="font-weight-medium mt-2 text-center text-subtitle-5">
+          Julia検定2級
+          <br>挑戦者求む！
+          <v-img 
+          max-height="200"
+          max-width="300"
+          src="https://julialang.org/assets/infra/lorenz.gif"
+        ></v-img>
+          <br>画像：https://julialang.org/
+        </v-card-text>
+      </v-card>
+    </v-container>
+    </v-hover>
+
+  <!--カード2の下のモーダルボタン-->
+  <div class="text-center">
+    <v-dialog
+      v-model="dialog2"
+      width="500"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="red lighten-3"
+          v-bind="attrs"
+          v-on="on"
+          class="white--text"
+        >
+        <strong>挑戦する</strong>
+        </v-btn>
+      </template>
+
+      <v-card>
+        <v-card-title class="text-h5 green lighten-2">
+          Julia検定2級にチャレンジ！
+        </v-card-title>
+
+        <v-card-text>
+          We're excited to be your gateway into machine learning. ML is a rapidly growing field that's buzzing with opportunity.<br>by juliaacademy.com
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+          I got it!
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+</v-col>
+
+
+  <v-col
+    cols="6"
+    sm="3"
+  >
+    <v-hover
+      v-slot="{ hover }"
+      close-delay="200"
+    >
+    <v-container fill-height>
+      <v-card class="jump3"
+        :elevation="hover ? 16 : 2"
+        :class="{ 'on-hover': hover }"
+        class="mx-auto"
+      >
+        <v-card-text class="font-weight-medium mt-2 text-center text-subtitle-5">
+          Julia検定3級
+          <v-img 
+          max-height="200"
+          max-width="300"
+          src="https://julialang.org/assets/infra/cartpole.gif"
+        ></v-img>
+          <br>画像：https://julialang.org/
+        </v-card-text>
+      </v-card>
+    </v-container>
+    </v-hover>
+
+ <!--カード3の下のモーダルボタン-->
+ <div class="text-center">
+  <v-dialog
+    v-model="dialog3"
+    width="500"
+  >
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        color="red lighten-3"
+        v-bind="attrs"
+        v-on="on"
+        class="white--text"
+      >
+      <strong>挑戦する</strong>
+      </v-btn>
+    </template>
+
+    <v-card>
+      <v-card-title class="text-h5 green lighten-2">
+        Julia検定3級にチャレンジ！
+      </v-card-title>
+
+      <v-card-text>
+        The world of Machine Learning with Knet<br>by juliaacademy.com
+      </v-card-text>
+
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="primary"
+          text
+          @click="dialog = false"
+        >
+        I got it!
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</div>
+</v-col>
+
+  <v-col
+  cols="6"
+  sm="3"
+>
+  <v-hover
+    v-slot="{ hover }"
+    close-delay="200"
+  >
+  <v-container fill-height>
+    <v-card class="jump4"
+      :elevation="hover ? 16 : 2"
+      :class="{ 'on-hover': hover }"
+      class="mx-auto"
+    >
+      <v-card-text class="font-weight-medium mt-2 text-center text-subtitle-5">
+        Julia検定4級
+        <v-img
+        max-height="200"
+        max-width="300"
+        src="https://julialang.org/assets/infra/onlinestats.gif"
+        >
+        </v-img>
+        <br>画像：https://julialang.org/
+      </v-card-text>
+    </v-card>
+  </v-container>
+  </v-hover>
+
+   <!--カード4の下のモーダルボタン-->
+   <div class="text-center">
+    <v-dialog
+      v-model="dialog4"
+      width="500"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="red lighten-3"
+          v-bind="attrs"
+          v-on="on"
+          class="white--text"
+        >
+        <strong>挑戦する</strong>
+        </v-btn>
+      </template>
+
+      <v-card>
+        <v-card-title class="text-h5 green lighten-2">
+          Julia検定4級にチャレンジ！
+        </v-card-title>
+
+        <v-card-text>
+          How to build and solve decision making problems using the POMDPs.jl ecosystem of packages<br>by juliaacademy.com
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+          I got it!
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+</v-col>
+
+</v-row>
+
+      <!-- 下部にあるバーと本文 -->
+      <br>
+      <br>
+      <br>
+      <v-toolbar
+          color="green lighten-2"
+          dark
+          dense
+          flat
+        >
+          <v-toolbar-title class="text-body-2">
+            Upcoming Changes
+          </v-toolbar-title>
+        </v-toolbar>
+        <v-card-text>
+          Stars die and reborn. They get so hot that the nuclei of the atoms fuse together deep within them to make the oxygen we breathe, the carbon in our muscles, the calcium in our bones, the iron in our blood. All was cooked in the fiery hearts of long vanished stars. The cosmos is also within us. We’re made of star stuff. We are a way for the cosmos to know itself.
+        </v-card-text>
+    
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-icon
+            large
+            @click="next"
+          >
+            mdi-chevron-right
+          </v-icon>
+        </v-card-actions>
+
+        </v-parallax>
+      </v-container>
+    </v-main>
+  
+    
+    <v-footer app color="red lighten-3">
+      <!--フッター-->
+      <v-footer padless dark color="red lighten-3">
+        <v-col
+          class="text-center"
+          cols="12"
+        >
+          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        </v-col>
+      </v-footer>
+  </v-footer>
+    </v-footer>
+
+  </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  
+  <script>
+  new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data () {
+      return {
+      }
+    },
+  })
+  </script>
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->            
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>            
+</html>
