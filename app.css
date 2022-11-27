@@ -1,0 +1,89 @@
+.v-card.on-hover.theme--dark {
+    background-color: rgba(#FFF, 0.8)
+}
+
+.v-card__text {
+    color: #000
+}
+
+.v-main.colorchangeanime2_bg {
+    height: 250px;
+    margin: 30px 0;
+    background: rgb(255, 196, 246);
+    background: radial-gradient(circle, rgb(255, 246, 250) 0%, rgb(255, 211, 223) 100%) 0 0 / 200% 100% repeat;
+    animation: colorchangeanimation-bg2 3s infinite alternate;
+  }
+  
+  @keyframes colorchangeanimation-bg2 {
+    50% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+
+.v-card.jump1 {
+    background: rgb(255, 255, 255);
+    animation: fluffy1 13s ease infinite;
+  }
+  
+  @keyframes fluffy1 {
+    0% { transform:translateY(0) }
+    5% { transform:translateY(0) }
+    10% { transform:translateY(0) }
+    20% { transform:translateY(-15px) }
+    25% { transform:translateY(0) }
+    30% { transform:translateY(-15px) }
+    50% { transform:translateY(0) }
+    100% { transform:translateY(0) }
+  }
+
+  .v-card.jump2 {
+    background: rgb(255, 255, 255);
+    animation: fluffy1 14s ease infinite;
+  }
+  
+  @keyframes fluffy1 {
+    0% { transform:translateY(0) }
+    5% { transform:translateY(0) }
+    10% { transform:translateY(0) }
+    20% { transform:translateY(-15px) }
+    25% { transform:translateY(0) }
+    30% { transform:translateY(-15px) }
+    50% { transform:translateY(0) }
+    100% { transform:translateY(0) }
+  }
+
+  .v-card.jump3 {
+    background: rgb(255, 255, 255);
+    animation: fluffy1 17s ease infinite;
+  }
+  
+  @keyframes fluffy1 {
+    0% { transform:translateY(0) }
+    5% { transform:translateY(0) }
+    10% { transform:translateY(0) }
+    20% { transform:translateY(-15px) }
+    25% { transform:translateY(0) }
+    30% { transform:translateY(-15px) }
+    50% { transform:translateY(0) }
+    100% { transform:translateY(0) }
+  }
+
+  .v-card.jump4 {
+    background: rgb(255, 255, 255);
+    animation: fluffy1 20s ease infinite;
+  }
+  
+  @keyframes fluffy1 {
+    0% { transform:translateY(0) }
+    5% { transform:translateY(0) }
+    10% { transform:translateY(0) }
+    20% { transform:translateY(-15px) }
+    25% { transform:translateY(0) }
+    30% { transform:translateY(-15px) }
+    50% { transform:translateY(0) }
+    100% { transform:translateY(0) }
+  }
+
