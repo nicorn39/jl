@@ -1,2 +1,2 @@
-# Julia検定サイト開発
-Vuetifyを用いてCDNで作成。
+# Julia検定サイト開発　Julia test site development
+Vuetifyを用いてCDNで作成。 Created by CDN using Vuetify.
